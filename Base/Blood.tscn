@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Base/Blood.gd" type="Script" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.478431, 0.180392, 0.211765, 1 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+direction = Vector3( 10, 10, 0 )
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.270588, 0.156863, 0.235294, 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.894118, 0.129412, 0.129412, 1 )
+
+[node name="Blood" type="Node2D"]
+script = ExtResource( 1 )
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 25
+lifetime = 0.5
+explosiveness = 0.5
+process_material = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Particles2D"]
+rotation = 0.0132724
+emitting = false
+amount = 15
+lifetime = 0.5
+explosiveness = 0.5
+randomness = 1.0
+process_material = SubResource( 2 )
+
+[node name="Particles2D2" type="Particles2D" parent="Particles2D"]
+emitting = false
+amount = 25
+lifetime = 0.6
+explosiveness = 0.5
+randomness = 1.0
+process_material = SubResource( 3 )

@@ -1,0 +1,279 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Font/slkscr.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/HealthBar.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/GAMEOVER.png" type="Texture" id=3]
+[ext_resource path="res://UI/GameOverScreen.gd" type="Script" id=4]
+[ext_resource path="res://UI/FpsCounter.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/coin.png" type="Texture" id=6]
+[ext_resource path="res://UI/EnemyCounter.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/ui/ui-healthbar-mock.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/armour-spritesheet.png" type="Texture" id=9]
+[ext_resource path="res://Font/slkscreb.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://UI/MarginContainer.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+outline_size = 1
+outline_color = Color( 0.270588, 0.156863, 0.235294, 1 )
+use_mipmaps = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+outline_size = 1
+outline_color = Color( 0.270588, 0.156863, 0.235294, 1 )
+use_mipmaps = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+outline_size = 1
+outline_color = Color( 0.270588, 0.156863, 0.235294, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+outline_size = 1
+outline_color = Color( 0.270588, 0.156863, 0.235294, 1 )
+use_mipmaps = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0.270588, 0.156863, 0.235294, 1 )
+font_data = ExtResource( 10 )
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="FpsCounter" type="MarginContainer" parent="."]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 14.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="HBoxContainer" parent="FpsCounter"]
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="FpsCounter/CenterContainer"]
+margin_top = 2.0
+margin_bottom = 11.0
+custom_fonts/font = SubResource( 1 )
+
+[node name="EnemyCounter" type="CenterContainer" parent="."]
+margin_left = 296.0
+margin_right = 320.0
+margin_bottom = 14.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EnemyCounter"]
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 11.0
+custom_fonts/font = SubResource( 2 )
+text = "100"
+align = 2
+valign = 1
+
+[node name="HealthbarCont" type="CenterContainer" parent="."]
+margin_top = 153.0
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HealthbarCont"]
+margin_left = 120.0
+margin_right = 200.0
+margin_bottom = 28.0
+texture = ExtResource( 8 )
+
+[node name="HealthBar" type="MarginContainer" parent="HealthbarCont" groups=[
+"healthbar",
+]]
+margin_left = 132.0
+margin_top = 7.0
+margin_right = 188.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HealthbarCont/HealthBar"]
+margin_right = 56.0
+margin_bottom = 13.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HealthbarCont/HealthBar/VBoxContainer"]
+margin_right = 56.0
+margin_bottom = 9.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Shield" type="Label" parent="HealthbarCont/HealthBar/VBoxContainer/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "100%"
+
+[node name="Label2" type="Label" parent="HealthbarCont/HealthBar/VBoxContainer/HBoxContainer"]
+margin_left = 28.0
+margin_right = 28.0
+margin_bottom = 9.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="Health" type="Label" parent="HealthbarCont/HealthBar/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "100%"
+align = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HealthbarCont/HealthBar/VBoxContainer"]
+margin_top = 13.0
+margin_right = 56.0
+margin_bottom = 13.0
+
+[node name="GameOverScreen" type="MarginContainer" parent="."]
+visible = false
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="CenterContainer" parent="GameOverScreen"]
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/GameOver"]
+margin_left = 52.0
+margin_top = 66.0
+margin_right = 267.0
+margin_bottom = 113.0
+
+[node name="TextureRect" type="TextureRect" parent="GameOverScreen/GameOver/VBoxContainer"]
+margin_right = 215.0
+margin_bottom = 23.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen/GameOver/VBoxContainer"]
+margin_top = 27.0
+margin_right = 215.0
+margin_bottom = 47.0
+
+[node name="Button" type="Button" parent="GameOverScreen/GameOver/VBoxContainer/CenterContainer"]
+margin_left = 79.0
+margin_right = 136.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+text = "Restart"
+
+[node name="CoinCounter" type="MarginContainer" parent="."]
+margin_left = 3.0
+margin_top = 161.0
+margin_right = 99.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CoinCounter"]
+margin_right = 96.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="CoinCounter/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 6 )
+
+[node name="CoinText" type="Label" parent="CoinCounter/HBoxContainer"]
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 37.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 4 )
+text = "100"
+uppercase = true
+
+[node name="ArmourContainer" type="MarginContainer" parent="."]
+margin_left = 310.0
+margin_top = 161.0
+margin_right = 310.0
+margin_bottom = 161.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ArmourContainer"]
+texture = ExtResource( 9 )
+hframes = 8
+frame = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 252.0
+margin_bottom = 117.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 188.0
+margin_bottom = 61.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 188.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 5 )
+text = "MUITO BEM!
+MATOU TUDO :D"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 188.0
+margin_bottom = 61.0
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 65.0
+margin_right = 122.0
+margin_bottom = 20.0
+text = "Restart"
+[connection signal="pressed" from="GameOverScreen/GameOver/VBoxContainer/CenterContainer/Button" to="GameOverScreen" method="_on_Button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Button" to="MarginContainer" method="_on_Button_pressed"]
